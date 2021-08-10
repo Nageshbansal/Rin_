@@ -12,6 +12,7 @@ class Music(commands.Cog):
     def __init__(self, client):
         self.client = client
 
+
     """Intializing commands """
     @commands.Cog.listener()
     async def on_ready(self):
@@ -42,7 +43,7 @@ class Music(commands.Cog):
         channel = ctx.message.author.voice.channel
         voice = get(ctx.bot.voice_clients, guild=ctx.guild)
 
-        if voice.is_connected():    # checking bot is connected
+        if voice and voice.is_connected():   # checking bot is connected
             await voice.disconnect()        # disconnect bot
             print(f"bot disconnected {channel}")
             await ctx.channel.send(f"left {channel}")
@@ -60,10 +61,10 @@ class Music(commands.Cog):
         except PermissionError:
             await ctx.send("wait for the music to be completed ")
 
-        await Music.join(self,ctx)
-        channel = (ctx.message.author.voice.channel)
+        await Music.join(self,ctx)  # calling the join method
+        channel = (ctx.message.author.voice.channel)  # defining  the author
         voice = get(ctx.bot.voice_clients, guild=ctx.guild)
-        ydl_opts = {
+        ydl_opts = {                                   # ydl_options
             'format' : 'bestaudio/best',
             'postprocessors': [{
                 'key': 'FFmpegExtractAudio',
@@ -73,7 +74,7 @@ class Music(commands.Cog):
 
         }
 
-        with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+        with youtube_dl.YoutubeDL(ydl_opts) as ydl:   # searching the song by youtube_dl
             ydl.download([url])
 
         for file in os.listdir("./"):

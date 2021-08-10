@@ -40,7 +40,8 @@ class Meme(commands.Cog):
         else:
             if payload.emoji.name == "▶" and payload.message_id in self.msg_list:
                 print(payload.message_id)
-                return self.meme
+
+                await self.meme(self.ctx)
 
             elif payload.emoji.name == "◀" and payload.message_id in self.msg_list:
                 return "backward"
