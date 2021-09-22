@@ -13,11 +13,11 @@ client = discord.Client()
 load_dotenv()
 
 reddit = praw.Reddit(
-    client_id="fyc_h45Ag_gKeA",
-    client_secret="tLlpV_AgBYdKgdXcm9sReKuoCg60QQ",
-    user_agent="levi",
-    username='HelicopterRelevant95',
-    password='vb9416615528',
+    client_id="###",
+    client_secret="###",
+    user_agent="##",
+    username='##',
+    password='##',
     check_for_async=False,
 )
 
